@@ -102,39 +102,114 @@ Q(t+1)=T′Q(t)+TQ(t)′
 ⇒Q(t+1)=T⊕Q(t)
 
 ### Procedure
-/* write all the steps invloved */
 
+1.Using NAND gates and wires construct SR Flip-flop
+2.Repeat same steps to construct JK, D, T flipflops
+3.Find RTL logic and timing diagram for all flipflops
+4.End the program
 
 
 ### PROGRAM 
-/*
-Program for flipflops  and verify its truth table in quartus using Verilog programming.
-Developed by: 
-RegisterNumber:  
-*/
+
+'''Program for flipflops  and verify its truth table in quartus using Verilog programming.
+Developed by:Mathiyazhagan.A
+RegisterNumber:22005215  
+'''
+SR Flip-flop
 
 
+module sr_flipflop(S, R, clock, Q, Qbar);
+input S, R, clock;
+output Q, Qbar;
+wire X, Y;
+nand(X, S, clock);
+nand(Y, R, clock);
+nand(Q, X, Qbar);
+nand(Qbar, Y, Q);
+endmodule
+
+D Flip-flop
 
 
+module d_flipflop(D, clock, Q, Qbar);
+input D, clock;
+output Q, Qbar;
+assign Dbar = ~D;
+wire X, Y;
+nand(X, D, clock);
+nand(Y, Dbar, clock);
+nand(Q, X, Qbar);
+nand(Qbar, Y, Q);
+endmodule
 
+JK Flip-flop
+
+
+module jk_flipflop(J, K, clock, Q, Qbar);
+input J, K, clock;
+output Q, Qbar;
+wire P, S;
+nand(P, J, clock, Qbar);
+nand(S, K, clock, Q);
+nand(Q, P, Qbar);
+nand(Qbar, S, Q);
+endmodule
+
+T Flip-flop
+
+
+module t_flipflop(T, clock, Q, Qbar);
+input T, clock;
+output Q, Qbar;
+wire A, B;
+nand(A, T, clock, Qbar);
+nand(B, T, clock, Q);
+nand(Q, A, Qbar);
+nand(Qbar, B, Q);
+endmodule
 
 ### RTL LOGIC FOR FLIPFLOPS 
 
+SR Flip-flop
 
 
+![sr_ff_rtl](https://user-images.githubusercontent.com/118787327/214540579-eef1ae75-c1b9-4d0a-9e33-24ecae2f9e66.png)
+
+D Flip-flop
 
 
+![d_ff_rtl](https://user-images.githubusercontent.com/118787327/214540781-32a7326a-697f-40e2-b400-c0720756eb69.png)
 
 
+JK Flip-flop
+
+![jk_ff_rtl](https://user-images.githubusercontent.com/118787327/214541002-0be0ed57-5c4d-47cf-ac00-c1a3bf249a43.png)
+
+T Flip-flop
+
+
+![t_ff_rtl](https://user-images.githubusercontent.com/118787327/214541124-a09d01a7-9f16-47d4-84e0-770775444493.png)
 
 
 ### TIMING DIGRAMS FOR FLIP FLOPS 
 
+SR Flip-flop
+
+![sr_ff_td](https://user-images.githubusercontent.com/118787327/214541290-5b0dea25-b240-481c-8919-d55c20e5ea18.png)
+
+D Flip-flop
+
+![d_ff_td](https://user-images.githubusercontent.com/118787327/214541386-a26ef519-636a-48f5-92ee-e3a8e3156ea8.png)
+
+JK Flip-flop
+
+![jk_ff_td](https://user-images.githubusercontent.com/118787327/214541534-4d2cf13e-5769-423f-8aac-27062a0471d6.png)
+
+T Flip-flop
 
 
-
-
-
-
+![t_ff_td](https://user-images.githubusercontent.com/118787327/214541681-cec4327e-933f-4fd4-8f74-4c7dba0a2282.png)
 
 ### RESULTS 
+
+Thus implementation of flipflops using verilog is verified
